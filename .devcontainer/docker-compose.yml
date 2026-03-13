@@ -1,0 +1,20 @@
+services:
+  python:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    init: true
+    stdin_open: true
+    tty: true
+    working_dir: /app
+    volumes:
+      - ..:/app
+
+      - project1_venv:/app/python-projects/project1/.venv
+      - project2_venv:/app/python-projects/project2/.venv
+      - python_uv_cache:/root/.cache/uv
+
+volumes:
+  project1_venv:
+  project2_venv:
+  python_uv_cache:
