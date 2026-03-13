@@ -1,4 +1,5 @@
 from pytest import CaptureFixture
+
 from project1.main import get_message, main
 
 
