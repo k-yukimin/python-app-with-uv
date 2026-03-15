@@ -23,11 +23,11 @@ Dev Container と `uv` を使った Python サンプルワークスペースで�
 
 1. VS Code で `python-app-with-uv` を開きます。
 2. `Dev Containers: Reopen in Container` を実行します。
-3. 必要に応じて `python-app-with-uv.code-workspace` を開きます。
+3. 必要に応じて `python-app-with-uv.code-workspace` を開き、`Open Workspaceを`ます。
 
 ## セットアップ
 
-Dev Container の初回作成時に、`python-projects` 配下の各プロジェクトで `uv sync --group dev` を自動実行する設定です。
+Dev Container の作成時に、`python-projects` 配下の各プロジェクトで `uv sync --group dev` を自動実行する設定です。
 
 ```bash
 cd python-projects/sample_project
