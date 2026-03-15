@@ -1,132 +1,79 @@
 # python-app-with-uv
 
-Dev Container と `uv` を使って、複数の Python プロジェクトを 1 つのワークスペースで扱うためのサンプルです。
+Dev Container と `uv` を使った Python サンプルワークスペースです。
 
 ## 構成
 
 - `.devcontainer/`
-  Dev Container の設定です。`Dockerfile`、`docker-compose.yml`、`devcontainer.json` を置いています。
-- `python-projects/project1/`
-  1つ目の Python プロジェクトです。
-- `python-projects/project2/`
-  2つ目の Python プロジェクトです。
+  Dev Container の設定です。
+- `python-projects/sample_project/`
+  `uv` で管理するサンプル Python プロジェクトです。
 - `python-app-with-uv.code-workspace`
-  `project1` と `project2` をまとめて開くための VS Code ワークスペースです。
+  `sample_project` を開くための VS Code ワークスペースです。
 
 ## 前提
 
-- VS Code がインストールされていること
-- VS Code の Dev Containers 拡張が使えること
-- Docker Desktop など Docker を実行できること
+- VS Code
+- Dev Containers 拡張
+- Docker Desktop または Docker が動く環境
 
 ## 使い方
 
-1. `python-app-with-uv` フォルダを VS Code で開きます。
+1. VS Code で `python-app-with-uv` を開きます。
 2. `Dev Containers: Reopen in Container` を実行します。
-3. コンテナ起動後、必要なら `python-app-with-uv.code-workspace` を開きます。
-4. VS Code のエクスプローラーから `project1` / `project2` を個別に操作できます。
-
-## `uv` について
-
-各プロジェクトの依存は `uv` で管理します。仮想環境は各プロジェクト配下の `.venv` に作成されます。
-
-- `python-projects/project1/.venv`
-- `python-projects/project2/.venv`
-
-`.venv` は Docker volume にマウントされるため、コンテナ再作成時にも依存を再利用できます。
+3. 必要に応じて `python-app-with-uv.code-workspace` を開きます。
 
 ## セットアップ
 
-各プロジェクトで `uv sync` を実行します。
-
-### project1
-
 ```bash
-cd python-projects/project1
-uv sync --group dev
-```
-
-### project2
-
-```bash
-cd python-projects/project2
+cd python-projects/sample_project
 uv sync --group dev
 ```
 
 ## よく使うコマンド
 
-### 依存を同期する
-
 ```bash
-uv sync --group dev
-```
-
-### 依存を追加する
-
-```bash
-uv add requests
-```
-
-開発用依存を追加する場合:
-
-```bash
-uv add --group dev pytest
-```
-
-### 依存を削除する
-
-```bash
-uv remove requests
-```
-
-### スクリプトを実行する
-
-```bash
-uv run python src/project1/main.py
-```
-
-または `project.scripts` に定義したエントリーポイントを実行できます。
-
-```bash
-uv run project1
-```
-
-`project2` も同様です。
-
-```bash
-uv run project2
-```
-
-## チェック
-
-各プロジェクトで以下を実行できます。
-
-- `pytest`: テスト
-- `ruff`: lint
-- `mypy`: 型チェック
-
-```bash
+uv run sample_project
+uv run python src/sample_project/main.py
 uv run pytest
 uv run ruff check .
 uv run mypy src tests
 ```
 
-GitHub では [`.github/workflows/ci.yml`](./.github/workflows/ci.yml) で同じチェックを実行します。
+## 別プロジェクトを追加する
 
-## 例
+新しいプロジェクトを追加するときは `sample_project` を雛形として使います。
 
-`project2` へ移動して実行する例です。
+1. `python-projects/sample_project` を `python-projects/<new_project_name>` にコピーします。
+2. `src/sample_project` を `src/<new_project_name>` に変更します。
+3. `tests/sample_project` を `tests/<new_project_name>` に変更します。
+4. `pyproject.toml` を更新します。
+   - `[project].name`
+   - `[project.scripts]`
+   - `[tool.hatch.build.targets.wheel].packages`
+5. `src/<new_project_name>/main.py` と `tests/<new_project_name>/test_main.py` の import と表示文字列を更新します。
+6. [python-app-with-uv.code-workspace](./python-app-with-uv.code-workspace) に新しいフォルダを追加します。
+7. [.devcontainer/docker-compose.yml](./.devcontainer/docker-compose.yml) に新しい `.venv` 用 volume を追加します。
+8. 次を実行します。
 
 ```bash
-cd /app/python-projects/project2
+cd python-projects/<new_project_name>
 uv sync --group dev
-uv run project2
+```
+
+`my_app` を追加する例:
+
+```bash
+cp -r python-projects/sample_project python-projects/my_app
+mv python-projects/my_app/src/sample_project python-projects/my_app/src/my_app
+mv python-projects/my_app/tests/sample_project python-projects/my_app/tests/my_app
+cd python-projects/my_app
+uv sync --group dev
 ```
 
 ## 補足
 
-- `mypy` のキャッシュは `/tmp/mypy-cache` を使う設定です。
-- `pytest` のキャッシュは `/tmp/pytest-cache` を使う設定です。
-- `ruff` のキャッシュは `/tmp/ruff-cache` を使う設定です。
-- `.venv` や `__pycache__` などの生成物は Git 管理対象外です。
-- Dev Container の設定を変更した場合は `Rebuild Container` を実行してください。
+- `mypy` のキャッシュは `/tmp/mypy-cache` を使います。
+- `pytest` のキャッシュは `/tmp/pytest-cache` を使います。
+- `ruff` のキャッシュは `/tmp/ruff-cache` を使います。
+- `.venv`、`__pycache__` などの生成物は Git 管理対象外です。

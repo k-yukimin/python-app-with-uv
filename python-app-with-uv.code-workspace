@@ -1,12 +1,8 @@
 {
   "folders": [
     {
-      "name": "project1",
-      "path": "python-projects/project1"
-    },
-    {
-      "name": "project2",
-      "path": "python-projects/project2"
+      "name": "sample_project",
+      "path": "python-projects/sample_project"
     }
   ]
 }

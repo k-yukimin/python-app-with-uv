@@ -1,5 +1,5 @@
 def get_message() -> str:
-    return "Hello from project1"
+    return "Hello from sample_project"
 
 
 def main() -> None:
