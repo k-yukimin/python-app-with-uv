@@ -4,6 +4,7 @@ def get_message() -> str:
 
 def main() -> None:
     print(get_message())
+    print("github test")
 
 
 if __name__ == "__main__":
