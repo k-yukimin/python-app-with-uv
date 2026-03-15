@@ -3,6 +3,7 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "python",
   "workspaceFolder": "/app",
+  "postCreateCommand": "find /app/python-projects -mindepth 1 -maxdepth 1 -type d -exec sh -c 'cd \"$1\" && [ -f pyproject.toml ] && uv sync --group dev' sh {} \\;",
   "customizations": {
     "vscode": {
       "extensions": [

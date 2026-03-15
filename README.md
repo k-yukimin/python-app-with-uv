@@ -27,6 +27,8 @@ Dev Container と `uv` を使った Python サンプルワークスペースで�
 
 ## セットアップ
 
+Dev Container の初回作成時に、`python-projects` 配下の各プロジェクトで `uv sync --group dev` を自動実行する設定です。
+
 ```bash
 cd python-projects/sample_project
 uv sync --group dev
@@ -57,7 +59,7 @@ uv run mypy src tests
 6. [python-app-with-uv.code-workspace](./python-app-with-uv.code-workspace) に新しいフォルダを追加します。
 7. [.devcontainer/docker-compose.yml](./.devcontainer/docker-compose.yml) に新しい `.venv` 用 volume を追加します。
 8. [.github/workflows/ci.yml](./.github/workflows/ci.yml) の matrix に新しいプロジェクトパスを追加します。
-9. 次を実行します。
+9. Dev Container を作り直すと、`python-projects` 配下の `pyproject.toml` を持つ各プロジェクトで `uv sync --group dev` が自動実行されます。
 
 ```bash
 cd python-projects/<new_project_name>
