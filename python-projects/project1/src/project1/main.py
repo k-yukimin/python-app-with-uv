@@ -3,8 +3,8 @@ def get_message() -> str:
 
 
 def main() -> None:
+    a = 1
     print(get_message())
-    print("github test")
 
 
 if __name__ == "__main__":
