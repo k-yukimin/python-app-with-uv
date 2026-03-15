@@ -10,6 +10,8 @@ Dev Container と `uv` を使った Python サンプルワークスペースで�
   `uv` で管理するサンプル Python プロジェクトです。
 - `python-app-with-uv.code-workspace`
   `sample_project` を開くための VS Code ワークスペースです。
+- `.github/workflows/ci.yml`
+  GitHub Actions で `pytest`、`ruff`、`mypy` を実行する CI 設定です。
 
 ## 前提
 
@@ -54,7 +56,8 @@ uv run mypy src tests
 5. `src/<new_project_name>/main.py` と `tests/<new_project_name>/test_main.py` の import と表示文字列を更新します。
 6. [python-app-with-uv.code-workspace](./python-app-with-uv.code-workspace) に新しいフォルダを追加します。
 7. [.devcontainer/docker-compose.yml](./.devcontainer/docker-compose.yml) に新しい `.venv` 用 volume を追加します。
-8. 次を実行します。
+8. [.github/workflows/ci.yml](./.github/workflows/ci.yml) の matrix に新しいプロジェクトパスを追加します。
+9. 次を実行します。
 
 ```bash
 cd python-projects/<new_project_name>
