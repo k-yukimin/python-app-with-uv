@@ -3,7 +3,6 @@ def get_message() -> str:
 
 
 def main() -> None:
-    pass
     print(get_message())
 
 

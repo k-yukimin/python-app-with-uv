@@ -127,5 +127,6 @@ uv run project2
 
 - `mypy` のキャッシュは `/tmp/mypy-cache` を使う設定です。
 - `pytest` のキャッシュは `/tmp/pytest-cache` を使う設定です。
+- `ruff` のキャッシュは `/tmp/ruff-cache` を使う設定です。
 - `.venv` や `__pycache__` などの生成物は Git 管理対象外です。
 - Dev Container の設定を変更した場合は `Rebuild Container` を実行してください。

@@ -34,6 +34,7 @@ pythonpath = ["src"]
 testpaths = ["tests"]
 
 [tool.ruff]
+cache-dir = "/tmp/ruff-cache"
 line-length = 88
 src = ["src", "tests"]
 
