@@ -9,7 +9,7 @@ Dev Container と `uv` を使った Python サンプルワークスペースで�
 - `python-projects/sample_project/`
   `uv` で管理するサンプル Python プロジェクトです。
 - `python-app-with-uv.code-workspace`
-  `sample_project` を開くための VS Code ワークスペースです。
+  指定したプロジェクトを開くための VS Code ワークスペースです。
 - `.github/workflows/ci.yml`
   GitHub Actions で `pytest`、`ruff`、`mypy` を実行する CI 設定です。
 
@@ -42,6 +42,13 @@ uv run python src/sample_project/main.py
 uv run pytest
 uv run ruff check .
 uv run mypy src tests
+```
+
+`test_project` でも同様に実行できます。
+
+```bash
+cd python-projects/test_project
+uv run test_project
 ```
 
 ## 別プロジェクトを追加する
