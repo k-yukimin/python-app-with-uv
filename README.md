@@ -44,13 +44,6 @@ uv run ruff check .
 uv run mypy src tests
 ```
 
-`test_project` でも同様に実行できます。
-
-```bash
-cd python-projects/test_project
-uv run test_project
-```
-
 ## 別プロジェクトを追加する
 
 新しいプロジェクトを追加するときは `sample_project` を雛形として使います。
