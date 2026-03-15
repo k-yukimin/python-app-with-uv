@@ -1,5 +1,5 @@
 {
-  "name": "PythonApp",
+  "name": "python-app-with-uv",
   "dockerComposeFile": "docker-compose.yml",
   "service": "python",
   "workspaceFolder": "/app",
@@ -8,14 +8,18 @@
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
-        "ms-python.black-formatter",
+        "charliermarsh.ruff",
         "ms-python.mypy-type-checker"
       ],
       "settings": {
         "editor.tabSize": 4,
         "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.ruff": true,
+          "source.organizeImports.ruff": true
+        },
         "[python]": {
-          "editor.defaultFormatter": "ms-python.black-formatter"
+          "editor.defaultFormatter": "charliermarsh.ruff"
         },
         "python.analysis.typeCheckingMode": "basic"
       }
